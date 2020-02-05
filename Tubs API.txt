@@ -1,0 +1,56 @@
+Tubs API______
+
+ToDo;
+CRON call - update booking SET status=3 WHERE end_date <= CURDATE(); //To change status to ready for collection when booking end date has passed.
+
+
+___________________________
+IMPLEMENTED:
+___________________________
+POST---------
+__staff
+		/staff/create?user&pass
+	
+__customers
+		/customers/create?name&address&phone&email
+
+__bookings
+		/bookings/create?customer&item&sd&ed&status&price&paid
+
+__items
+		/items/create?item&desc&status
+
+__FUNCTIONS
+		/stafflogin?user&pass
+
+
+
+GET-----------
+__customers
+		/getcustomer?id
+		/getAllCustomers
+__bookings
+		/getbooking?id
+		/allbookings
+		/activebookings
+	--tasks
+		/deliveries
+		/collections
+__items
+
+
+
+PUT-----------
+__bookings
+		/deliverbooking/{id}
+		/collectbooking/{id}
+		/cancelbooking/{id}
+__customers
+		/updatecustomer/{id}
+__items
+	/updateitem/{id}?item&desc&status&id
+
+
+DELETE--------
+
+
