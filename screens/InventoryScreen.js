@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
+import { db } from '../constants/Database';
 
 export default class InventoryScreen extends React.Component {
   constructor(props) {
@@ -18,45 +19,45 @@ export default class InventoryScreen extends React.Component {
     
 
   getItems = function(){
-    return fetch('http://192.168.1.156:3000/inventory')
+    return fetch(db.epurl+'inventory')
     .then(response => response.json())
     .then(inventory => {
       this.setState({ inventory });
     }) 
   }
-  
+  //<Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
   render(){
   return (
     <ScrollView style={styles.container}>
       
-      {this.state.inventory.map(item => <Card style={styles.Card} key={item.id} title={item.fname+' '+item.lname}>
+      {this.state.inventory.map(item => <Card style={styles.Card} key={item.id} title={item.name+' '+item.description}>
       <Card.Content>
-      <Title>{item.fname+' '+item.lname}</Title>
-      <Paragraph>{item.address}</Paragraph>
+      <Title>{item.name}</Title>
+      <Paragraph>{item.description}</Paragraph>
     </Card.Content>
-    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+    
     <Card.Actions>
-      <Button>Cancel</Button>
-      <Button>Ok</Button>
+
     </Card.Actions>
         </Card>)}      
       
     </ScrollView>
   );
 }
-}
-
-InventoryScreen.navigationOptions = {
+static navigationOptions = ({ navigation }) => {
+  return{
   title: 'Inventory',
   headerRight: (
     <View><Button
-      onPress={() => alert('This is a button!')}
+    onPress={() => {navigation.navigate('AddItem')}}
       fontWeight="bold"
-      title="Add Item"
+      title="Add Booking"
       color="#000"
     >+</Button></View>
   ),
 };
+}
+}
 
 
 const styles = StyleSheet.create({

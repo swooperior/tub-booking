@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
+import { db } from '../constants/Database';
 
 export default class BookingsScreen extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class BookingsScreen extends React.Component {
   }
 
   getBookings = function(){
-    return fetch('http://192.168.1.156:3000/bookings')
+    return fetch(db.epurl+'bookings')
     .then(response => response.json())
     .then(bookings => {
       this.setState({ bookings });

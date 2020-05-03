@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { View, Text, StyleSheet, Linking} from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
+import { db } from '../constants/Database';
 
 
 export default class TaskScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tasks: []};
+    this.state = {task: []};
   }
 
   componentDidMount() {
@@ -18,26 +19,28 @@ export default class TaskScreen extends React.Component {
   }
 
   getBooking = function(){
-    var t_id = this.props.navigation.getParam('bookingID')
-    return fetch('http://192.168.1.156:3000/task/'+t_id)
+    var t_id = this.props.navigation.getParam('bookingID');
+    return fetch(db.epurl+'task/'+t_id)
     .then(response => response.json())
-    .then(tasks => { 
-      this.setState({ tasks });
+    .then(task => { 
+      this.setState({ task });
     })
   }
 
   deliverBooking = function(){
-    var t_id = this.props.navigation.getParam('bookingID')
-    return fetch('http://192.168.1.156:3000/booking/'+t_id+'/delivered')
-    .then(() => { 
+    var t_id = this.props.navigation.getParam('bookingID');
+    console.log(t_id);
+    return fetch(db.epurl+'booking/'+t_id+'/delivered')
+    .then((response) => { 
+      console.log(response);
         alert('Marked as delivered!');
         return this.props.navigation.navigate('Tasks');
     })
   }
 
   collectBooking = function(){
-    var t_id = this.props.navigation.getParam('bookingID')
-    return fetch('http://192.168.1.156:3000/booking/'+t_id+'/collected')
+    var t_id = this.props.navigation.getParam('bookingID');
+    return fetch(db.epurl+'booking/'+t_id+'/collected')
     .then(() => { 
         alert('Marked as collected!');
       return this.props.navigation.navigate('Tasks');
@@ -58,7 +61,7 @@ export default class TaskScreen extends React.Component {
   return (
     <View style={styles.container}>
       
-      {this.state.tasks.map(task => <Card style={styles.Card} key={task.id} title={task.c_id}>
+      {this.state.task.map(task => <Card style={styles.Card} key={task.id} title={task.c_id}>
       
       <Card.Content>
         <Title>#{task.id} - {task.fname} {task.lname}</Title>

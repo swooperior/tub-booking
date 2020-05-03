@@ -1,6 +1,13 @@
 Tubs API______
 
 ToDo;
+Expo must be ran with sudo
+
+All screen.js files must have the correct server IP where the API is running.
+ToDo; Create a config file which will load the correct IP for the API.
+
+MySQL server must allow remote connections, otherwise errors will be thrown everywhere.
+
 CRON call - update booking SET status=3 WHERE end_date <= CURDATE(); //To change status to ready for collection when booking end date has passed.
 
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ScrollView, RefreshControl, Text, StyleSheet, Actions } from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
+import { db } from '../constants/Database';
 
 export default class TasksScreen extends React.Component {
   constructor(props) {
@@ -17,11 +18,11 @@ export default class TasksScreen extends React.Component {
   }
 
   updateBookings = function(){
-    return fetch('http://192.168.1.156:3000/tasks')
+    return fetch(db.epurl+'tasks/')
     .then(response => response.json())
     .then(tasks => { 
       this.setState({ tasks });
-      console.log('Should have refreshed.')
+      
     })
   }
 
@@ -36,7 +37,7 @@ export default class TasksScreen extends React.Component {
       <Card.Content>
         <Title>#{task.id} - {task.fname} {task.lname}</Title>
         <Paragraph style={{alignSelf:'flex-end', fontWeight:'bold', fontSize:20}}>{gStatus(task.status)}</Paragraph>
-        <Paragraph style={{fontSize:18,fontStyle:'italic'}}>{task.size} {task.itemName}</Paragraph>
+        <Paragraph style={{fontSize:18,fontStyle:'italic'}}>{task.name}</Paragraph>
         <Paragraph>{task.address}</Paragraph>
       </Card.Content>
       </Card>)}      

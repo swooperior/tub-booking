@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
 import { ExpoLinksView } from '@expo/samples';
+import { db } from '../constants/Database';
 
 export default class BookingScreen extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class BookingScreen extends React.Component {
 
   getBooking = function(){
     var b_id = this.props.navigation.getParam('bookingID')
-    return fetch('http://192.168.1.156:3000/task/'+b_id)
+    return fetch(db.epurl+'booking/'+b_id)
       .then(response => response.json())
       .then(bookings => {
       this.setState({ bookings });

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { Card, Avatar, Button, Paragraph, Title } from 'react-native-paper';
 import { ExpoLinksView } from '@expo/samples';
+import { db } from '../constants/Database';
 
 export default class LinksScreen extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class LinksScreen extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://192.168.1.55:3000/customers')
+    return fetch(db.epurl+'customers')
     .then(response => response.json())
     .then(customers => {
       this.setState({ customers });

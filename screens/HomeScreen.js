@@ -10,7 +10,7 @@ import {
   TouchableNativeFeedback,
   View,
 } from 'react-native';
-
+import { db } from '../constants/Database';
 
 import * as AppStyles from '../Styles/Buttons';
 

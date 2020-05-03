@@ -18,13 +18,13 @@ import AddBookingScreen from '../screens/AddBookingScreen';
 // import EditBookingScreen from '../screens/EditBookingScreen';
 
 import CustomersScreen from '../screens/CustomersScreen';
-// import CustomerScreen from '../screens/CustomerScreen';
-// import AddCustomerScreen from '../screens/AddCustomerScreen';
+import CustomerScreen from '../screens/CustomerScreen';
+import AddCustomerScreen from '../screens/AddCustomerScreen';
 // import EditCustomerScreen from '../screens/EditCustomerScreen';
 
 import InventoryScreen from '../screens/InventoryScreen';
-// import ItemScreen from '../screens/ItemScreen';
-// import AddItemScreen from '../screens/AddItemScreen';
+// import InventoryDetailScreen from '../screens/InventoryDetailScreen';
+import AddInventoryScreen from '../screens/AddInventoryScreen';
 // import EditItemScreen from '../screens/EditItemScreen';
 
 const config = Platform.select({
@@ -127,8 +127,8 @@ BookingsStack.navigationOptions = {
 const CustomersStack = createStackNavigator(
   {
     Customers: CustomersScreen,
-    // Customer: CustomerScreen,
-    // AddCustomer: AddCustomerScreen,
+    Customer: CustomerScreen,
+    AddCustomer: AddCustomerScreen,
     // EditCustomer: EditCustomerScreen
   },
   config
@@ -147,7 +147,7 @@ const InventoryStack = createStackNavigator(
   {
     Inventory: InventoryScreen,
     // Item: ItemScreen,
-    // AddItem: AddItemScreen,
+    AddItem: AddInventoryScreen,
     // EditItem: EditItemScreen
   },
   config
